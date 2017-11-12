@@ -13,6 +13,8 @@ const routes = require('./routes/index');
 const app = express();
 const port = require('./settings.json').port;
 
+global.__basedir = __dirname;
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
 // parse application/json

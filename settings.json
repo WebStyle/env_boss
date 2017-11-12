@@ -1,8 +1,1 @@
-{
-  "port": 5000,
-  "app": {
-    "installed": false,
-    "login": "admin",
-    "password": "admin"
-  }
-}
+{"port":5000,"app":{"installed":true,"login":"adminbek","password":"123"}}

@@ -8,7 +8,7 @@ const settings = require('../settings.json');
  * @param res
  */
 function check(req, res) {
-  res.json(settings.app.installed);
+  res.json({installed: settings.app.installed});
 }
 
 /**
@@ -18,18 +18,28 @@ function check(req, res) {
  * @param res
  */
 function install(req, res) {
-  if (settings.app.installed) res.json({installed: true});
 
   let data = settings;
-  data.app.installed = true;
-  data.app.login = req.body.login;
-  data.app.password = req.body.password;
-  fs.writeFile('../settings.json', data, (err) => {
+
+  data.app = {
+    installed: true,
+    login: req.body.login,
+    password: req.body.password
+  };
+
+  let result = JSON.stringify(data);
+
+  fs.writeFile(__basedir + '/settings.json', result, 'utf-8', (err) => {
     if (err) return res.json(err);
+
+    let resultFile = fs.readFileSync(__basedir + '/settings.json', 'utf-8');
+    console.log('result file');
+    console.log(resultFile);
 
     res.json({installed: true});
   });
 }
+
 
 module.exports.check = check;
 module.exports.install = install;
