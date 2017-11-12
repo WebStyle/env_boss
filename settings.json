@@ -1,3 +1,8 @@
 {
-  "port": 5000
+  "port": 5000,
+  "app": {
+    "installed": false,
+    "login": "admin",
+    "password": "admin"
+  }
 }
